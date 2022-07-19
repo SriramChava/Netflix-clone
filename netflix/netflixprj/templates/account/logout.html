@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<header
+    class="min-h-screen w-full bg-black bg-opacity-75 showcase border-gray-600 border-b-8 flex justify-center py-20 bg-no-repeat"
+    style="background-image: url('{% static 'assets/background_netflix.jpg' %}');">
+    <div class="z-10 h-full py-32 md:py-0 text-gray-100 w-6/12  flex items-center flex-col">
+        <form method="POST">
+            {% csrf_token %}
+            <h1 class="text-4xl font-semibold text-center ">
+                Are you sure you want to log out ?
+            </h1>
+        <div class='my-4'>
+            <div class="flex justify-center items-center">
+                <button class="py-2 px-4 bg-primary_red text-gray-100 font-medium text-lg rounded-md" type="submit">
+                    Log Out
+                </button>
+            </div>
+        </div>
+        </form>
+        <div class='my-4'>
+            <div class="flex justify-center items-center">
+                <a href="{% url 'netflixpp:Home' %}">
+                    <button class="py-2 px-4 bg-primary_red text-gray-100 font-medium text-lg rounded-md">
+                        No take me back
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock content %}
