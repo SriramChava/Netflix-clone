@@ -4,7 +4,7 @@
 {% block content %}
 
 <section class='bg-primary_black min-h-screen py-20 md:py-0 flex-col flex justify-center items-center'
-    style="background-image: url('assets/background_netflix.jpg');">
+    style="background-image: url('{% static 'assets/background_netflix.jpg' %}');">
     <h2 class="text-center font-medium text-5xl my-4 text-gray-100">
         Who's watching ?
     </h2>
@@ -20,11 +20,31 @@
         {% endfor %}
     </div>
     <div class="flex justify-center items-center">
+        {% if profiles.count >= 5 %}
+        <div class = " text-center my-4">
+            <p style = "color:white; font-weight: 500; font-size: larger;">MAXIMUM AMOUNT OF PROFILES HAVE BEEN CREATED.</p>
+        </div>    
+        {% else %}
+        <a href="{% url 'netflixpp:profile-create'%}">
             <button class="px-4 py-2 rounded-md outline-none bg-gray-400 text-gray-100">
             Add A New Profile
             </button>
+        </a>
+        {% endif %}
     </div>
+        <div class="flex justify-center items-center">
+            {% if profiles.count == 1 %}
+            <div class=" text-center my-4">
+            </div>
+            {% else %}
+            <div class='my-3'>
+                <a href="{% url 'netflixpp:profile-delete'%}">
+                    <button class="px-4 py-2 rounded-md outline-none bg-gray-400 text-gray-100">
+                        Delete A Profile
+                    </button>
+                </a>
+            </div>
+            {% endif %}
+        </div>
 </section>
-
-
 {% endblock content %}
